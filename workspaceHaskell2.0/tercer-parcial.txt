@@ -1,0 +1,240 @@
+==================================================================
+                          TERCER PARCIAL
+==================================================================
+
+==========================IMPLEMENTACIÓN==========================
+
+a) Dar invariantes de representación válidos según la descripción de la estructura.
+-La evidencia de la estructura de persona no puede ser menor a 0.
+-En la investigación no debe haber dos personas con el mismo nombre.
+
+
+==================================================================
+
+b) Propósito: crea una investigación sin personas
+   Eficiencia: O(1)
+
+investigacion comenzarInvestigacion(){
+    InvestigacionSt* inv = new InvestigacionSt;
+    inv->sospechosos = emptyAL();
+    return inv;
+}
+
+
+==================================================================
+
+c) Propósito: devuelve los nombres de personas ingresadas.
+   Eficiencia: O(N)
+
+ArrayList nombresIngresados(Investigacion investigacion){
+    ArrayList nombres = emptyAL();
+
+    for(int i = 0; isValidIndex(i, investigacion->sospechosos); i++){
+        add(get(i, investigacion->sospechosos)->nombre, nombres);
+        i++;
+    }
+
+    return nombres;
+}
+
+
+==================================================================
+
+d) Propósito: devuelve la sumatoria de evidencia de las personas
+   Eficiencia: O(N)
+
+int cantEvidenciaDeLasPersonas(Investigacion investigacion){
+    int resultado = 0;
+
+    for(int i = 0; isValidIndex(i, investigacion->sospechosos); i++){
+        resultado = resultado + get(i, investigacion->sospechosos)->evidencia;
+        i++;
+    }
+
+    return resultado;
+
+}
+
+
+
+==================================================================
+
+
+e) Propósito: Indica si la investigacion posee al menos una
+              persona con al menos 5 evidencias en su contra
+   Eficiencia: O(N)
+
+bool casoCerrado(Investigacion investigacion){
+    bool resultado = false;
+
+    for(int i = 0; isValidIndex(i, investigacion->sospechosos); i++){
+        if(get(i, investigacion->sospechosos)->evidencia > 4){
+            resultado = true;
+        }
+        else{
+            resultado = resultado || false;
+        }
+        i++;
+    }
+
+    return resultado;
+}
+
+
+==================================================================
+
+f) Proposito: Indica si esa persona tiene al menos una evidencia
+              en su contra.
+   Eficiencia: O(N)
+
+
+
+bool esSospechosa(string nombre, Investigacion investigacion){
+    bool resultado = false;
+
+    for(int i = 0; isValidIndex(i, investigacion->sospechosos); i++){
+        if(get(i, investigacion->sospechosos)->evidencia > 0 && nombre == get(i, investigacion->sospechosos)->nombre){
+            resultado = true;
+        }
+        else{
+            resultado = resultado || false;
+        }
+        i++;
+    }
+
+    return resultado;
+}
+
+
+==================================================================
+
+g) Proposito: Devuelve a las personas con cero evidencia en su contra
+   Eficiencia: O(N)
+
+ArrayList posiblesInocentes(Investigacion investigacion){
+    ArrayList personas = emptyAL();
+
+    for(int i = 0; isValidIndex(i, investigacion->sospechosos); i++){
+        if(get(i, investigacion->sospechosos)->evidencia == 0){
+            add(get(i, investigacion->sospechosos), personas);
+        }
+        i++
+    }
+
+
+
+    return personas;
+
+}
+
+==================================================================
+
+h)
+    Propósito: ingresa a personas nuevas a la investigación (mediante sus nombres), sin evidencia en su contra.
+    Nota: suponer que el ArrayList es de nombres.
+    Precondición: las personas no existen en la investigación y no hay nombres repetidos.
+    Eficiencia: O(N)
+
+ ingresarPersonas(ArrayList nombres, Investigacion investigacion){
+
+    for(int i = 0; isValidIndex(i, nombres); i++){
+        add(crearPersona(get(i, nombres)), investigacion->sospechosos);
+    }
+}
+
+//Auxiliar: crearPersona()
+Persona crearPersona(string nombre){
+    PersonaSt* nueva = new PersonaSt;
+    nueva->nombre = nombre;
+    nueva->evidencia = 0;
+return nueva;
+}
+
+
+
+
+
+==================================================================
+
+
+
+i) Propósito: incrementa en uno la evidencia a una lista de personas
+  
+   Precondición: la evidencia aún no está asociada a esa persona.
+   Nota 1: la persona y la evidencia existen, pero NO están asociadas.
+   Nota 2: suponer que el ArrayList es de nombres.
+   Eficiencia: O(N)
+   ===============
+    ¿No sería cuadrática al tener que recorrer todos los elementos de
+    nombres e investigación?
+   ===============
+
+
+void ingresarUnaEvidencia(ArrayList nombres, Investigacion investigacion){
+    for(int i = 0; isValidIndex(i, nombres); i++){
+        for(int j = 0; isValidIndex(j, investigacion->sospechosos); j++){
+            if(get(i, nombres) == get(j, investigacion->sospechosos)->nombre){
+                get(j, investigacion->sospechosos)->evidencia++;
+            }
+        }
+        
+    }
+}
+
+
+
+
+
+
+================================USUARIO==================================
+
+
+j) Propósito: Indica la cantidad de inocentes
+   Eficiencia: O(N)
+
+int cantidadDeInocentes(Investigacion investigacion){
+    int resultado;
+    ArrayList inocentes = posiblesInocentes(investigacion)
+    for(int i = 0; isValidIndex(i, inocentes) ; i++){
+        resultado++;
+    }
+
+
+    return resultado;
+}
+
+
+
+
+====================================================================
+
+k) Propósito: Indica si la evidencia dada por parámetro es suficiente para cerrar el caso.
+    Eficiencia: 
+bool seCierraSiSeAñadenEstasEvidencias(int evidencias, ArrayList nombres, Investigacion investigacion){
+    for(int i = 0 ; i < evidencias; i++){
+        ingresarUnaEvidencia(nombres, investigacion);
+    }
+
+    return casoCerrado(investigacion);
+}
+
+
+====================================================================
+
+l) Propósito: Indica si las personas en la investigación son todas inocentes
+   Eficiencia : O(N) al ser ambas O(N)
+
+bool todasInocentes(Investigacion investigacion){
+    return (cantidadDeInocentes(investigacion) == cantidadDePersonas(nombresIngresados(investigacion)))
+}
+
+Auxiliar:
+Ef : O(N)
+int cantidadDePersonas(ArrayList nombres){
+    int resultado;
+    for(int i = 0; isValidIndex(i, nombres); i++){
+        resultado++;
+    }
+return resultado;
+}
+
