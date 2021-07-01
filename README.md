@@ -3,7 +3,7 @@
 ## Nicolás Cundari
 ### Breve resumen de lo que fue visto en la asignatura
 ### Lenguajes utilizados:
-####Haskell
+#### Haskell
 -Paradigma funcional: manipulación de expresiones
 -Tipos algebraicos
 -Tipos enumerativos
@@ -16,7 +16,7 @@
 - Conocimiento de la eficiencia de las funcionalidades implementadas en las distintas estructuras.
 
 
-####C++
+#### C++
 -Paradigma imperativo: modelo destructivo y estados implícitos del sistema
 -Punteros y Arrays
 -Se implementó muchas de las estructuras implementadas en Haskell con sus respectivos costes de eficiencia.
