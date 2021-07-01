@@ -23,7 +23,7 @@
 - Estructura de Lista Enlazada (LinkedList)
 - Estructuras arbóreas con LinkedList
 - BFS Y DFS: noción de conocimiento de las funcionalidades de búsqueda en amplitud y búsqueda en profundidad(Estructuras arbóreas)
-###El objetivo es buscar una estructura de datos que sea eficiente, siempre respecto al problema y sus limitaciones.
+### El objetivo es buscar una estructura de datos que sea eficiente, siempre respecto al problema y sus limitaciones.
 
 
 
