@@ -1,7 +1,7 @@
 # Trabajos y parciales de Estructuras de Datos en Universidad Nacional de Quilmes
 
 ## Nicolás Cundari
-### Breve resumen de lo que fue visto en la asignatura
+### Resumen de los conocimientos adquiridos
 ### Lenguajes utilizados:
 #### Haskell
 - Paradigma funcional: manipulación de expresiones
