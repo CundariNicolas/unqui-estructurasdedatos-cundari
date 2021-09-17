@@ -1,0 +1,73 @@
+Ejercicio 1)
+
+cambiarLosNivelesNPor :: a -> Int -> Tree a -> Tree a
+cambiarLosNivelesNPor a 0 (Tree x ti td) = (Tree a ti td)
+cambiarLosNivelesNPor a n (Tree x ti td) = (Tree x (cambiarLosNivelesNPor a (n-1) ti) (cambiarLosNivelesNPor a (n-1) td))
+
+-----------------
+
+Ejercicio 2)
+Costo: O(n * log n) n al recorrer la lista de pqs y log n por deleteMaxPq 
+en el peor de los casos
+
+perteneceAAlgunaPQ :: Ord a => a -> [PriorityQueue a] -> Bool
+perteneceAAlgunaPQ a [] = False
+perteneceAAlgunaPQ a (x:xs) = pertenceAPQ a x || perteneceAAlgunaPQ xs
+
+pertenceAPQ :: Ord a => a -> PriorityQueue a -> Bool
+pertenceAPQ a x = if(!isEmptyPQ x) 
+                    then
+                                        if(a == maxPQ x) 
+                                        then True
+                                        else pertenceAPQ a (deleteMaxPQ x)
+                    else False
+
+Ejercicio 3)
+
+a) Invariantes de representación: 
+    Todos los magos que estén en el map deben estar en la PQ
+    Si el map está vacío la PQ debe estar vacía también
+    Deben contener la misma cantidad de magos el Map y la PQ
+
+b)
+
+Costo: (n * n * log n)
+
+enseñarA :: [String] -> EscuelaDeMagia -> EscuelaDeMagia
+enseñarA [] edm = edm
+enseñarA (n:ns) (EDM map pq) = enseñarA ns (EDM (assocM n (aprender (fromJust(lookupM n map))))  actualizarPQ n pq  )
+
+Costo : (n * log n) en el peor caso de recorrer toda la pq haciendo deleteMaxPq 
+
+actualizarPQ :: n -> PriorityQueue a -> PriorityQueue a
+actualizarPQ n pq = if (n == nombre (maxPQ pq))
+                    then insertPQ (aprender(maxPQ pq)) (deleteMaxPQ pq)
+                    else insertPQ (maxPQ pq) (actualizarPQ n (deleteMaxPQ pq))
+
+
+fromJust :: Maybe v -> v
+fromJust (Just v) = v
+
+
+Ejercicio 4)
+
+a)
+PREC: el elemento pertenece al Multiset
+int ocurrencias (int elem, MultiSet ms) {
+    MSNode* actual = ms->first;
+    while (actual->elem =! elem) {
+        actual = actual->next;
+    }
+return actual->cantidad;
+
+}
+
+PREC: el elemento pertenece al Multiset
+
+b) void agregarOcurrencia(int elem, MultiSet ms){
+    MSNode* actual = ms->first;
+    while (actual->elem =! elem) {
+        actual = actual->next;
+    }
+    actual->cantidad++;
+}

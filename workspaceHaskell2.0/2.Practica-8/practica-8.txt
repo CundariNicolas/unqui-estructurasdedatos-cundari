@@ -1,0 +1,42 @@
+Indicar el propósito de los siguientes procedimientos o funciones, dando algunos ejemplos de uso
+junto con su resultado.
+
+
+1. // Precondición: c1 < c2
+void printFromTo(char c1, char c2) {
+for(int i = 0; c1 + i <= c2; i++) {
+cout << c1 + i << ", ";
+}
+
+El proposito es mostrar en consola todos los char entre c1 y c2,
+en representación Ascii y un salto de linea al final
+
+
+2. \\ Precondición: n >= 0
+int fc(int n) {
+int x = 1;
+while(n > 0) {
+x = x * n;
+n--;
+}
+return x;
+}
+
+El proposito es devolver en x el factorial de n
+
+
+
+
+3. \\ Precondición: n <= m
+int ft(int n, int m) {
+if (n == m) {
+return n;
+}
+return n + ft(n+1, m);
+}
+
+
+Es una funcion recursiva que si son iguales devuelve n + n
+sino devuelve la suma de cada sucesor de n hasta llegar a m
+
+/ n + n+1 + n

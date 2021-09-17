@@ -1,0 +1,28 @@
+#include <iostream> 
+/* Significa que es una libreria en el contexto global del sistema y no solo en mi proyecto*/
+
+
+#include "<string>"
+/* persona.h me permite agregar una interfaz si su implementacion */
+
+struct AlgoSt
+/* Para declarar la estructura de una persona
+    Podemos hacer algo parecido a haskell, exportamos la estructura, solo el nombre, no vamos a exportar la estructura interna
+    Que es std? String es un tipo del que está dentro del namespacestd, es un mecanismo que tiene c para agrupar nombres, evita que no se puedan repetir
+    los nombre sde las funciones, 
+*/
+
+
+Para crear una persona voy a declarar un puntero hacia una persona 
+typedef PersonaSt* Persona; <---- personast* es como un alias
+
+El identificador Persona va a representar un puntero a PersonaSt, que es un puntero? Significa que personaSt va a ocupar un espacio en memoria y cuando
+quiera construir un personaSt, va a tener que reservar un espacio de memoria del tamaño de la estructura que representa una persona y apuntarlo a la dirección del PRIMER
+espacio de memoria que reservé para una persona. Ese primer espacio de memoria es un puntero, que hace referencia a la dirección donde arranca el espacio de memoria que reservé
+para una persona
+
+
+new Reserva memoria para crear un dato
+
+Persona result = new PersonaSt; reserva un espacio de memoria del tamaño de la estructura que sea esa estructura
+
